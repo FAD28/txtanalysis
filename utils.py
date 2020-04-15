@@ -106,7 +106,9 @@ class DataCleaner:
 			i15 = i14.replace("\n","")    # added: 15-04-2020
 			i16 = i15.replace(":","")
 			i17 = i16.replace(",","")
-			new_list.append(i16)
+			i18 = i17.replace("[", "") 
+			i19 = i18.replace("]","") 
+			new_list.append(i19)
 		nn= "_".join(new_list)
 		return nn
 
