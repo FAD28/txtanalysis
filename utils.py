@@ -100,8 +100,9 @@ class DataCleaner:
 			i12 = i11.replace(")",'')
 			i13 = i12.strip()
 			i14 = i13.replace("&","")
-			i15 = i14.replace("\n","")    # ungetestet 15-04-2020
+			i15 = i14.replace("\n","")    # added: 15-04-2020
 			i16 = i15.replace(":","")
+			i17 = i16.replace(",","")
 			new_list.append(i16)
 		nn= "_".join(new_list)
 		return nn
