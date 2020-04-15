@@ -108,7 +108,8 @@ class DataCleaner:
 			i17 = i16.replace(",","")
 			i18 = i17.replace("[", "") 
 			i19 = i18.replace("]","") 
-			new_list.append(i19)
+			i20 = i19.replace("'","")
+			new_list.append(i20)
 		nn= "_".join(new_list)
 		return nn
 
