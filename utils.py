@@ -86,8 +86,9 @@ class DataCleaner:
 		"""
 		new_list= []
 		for i in name:
-			ii = i.replace("\n","")
-			i1 = ii.replace(".","")
+			ii = re.sub(r"\n", " ", i)
+			iii = ii.replace(r"\n","")
+			i1 = iii.replace(".","")
 			i2 = i1.replace("-","")
 			i3 = i2.replace(" ","-")
 			i4 = "".join(i3)
