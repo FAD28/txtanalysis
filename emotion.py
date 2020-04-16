@@ -215,11 +215,11 @@ class Emotionen_nrc:
         print("Words totally found: ",cc, " *")
         print("_________________")
         xf = Zorn + Erwartung + Ekel + Furcht + Freude + Traurigkeit + Überraschung + Vertrauen
-	try:
-		faktor = xf/cc
-	except:
-		faktor= 0 
-	print("EMOTIONEN  = ", xf, " *")
+        try:
+        faktor = xf/cc
+        except:
+        faktor= 0 
+        print("EMOTIONEN  = ", xf, " *")
         print("FAKTOR = ", xf/cc)
         return faktor, zorn_liste, erwartung_liste, ekel_liste, furcht_liste, freude_liste, traurigkeit_liste, überraschung_liste, vertrauen_liste
 
