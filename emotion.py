@@ -216,14 +216,12 @@ class Emotionen_nrc:
         print("_________________")
         xf = Zorn + Erwartung + Ekel + Furcht + Freude + Traurigkeit + Überraschung + Vertrauen
 	try:
-		emotions_found = xf
 		faktor = xf/cc
 	except:
-		emotions_found = xf
-		faktor = None
+		faktor= 0 
 	print("EMOTIONEN  = ", xf, " *")
         print("FAKTOR = ", xf/cc)
-        return emotions_found, faktor, zorn_liste, erwartung_liste, ekel_liste, furcht_liste, freude_liste, traurigkeit_liste, überraschung_liste, vertrauen_liste
+        return faktor, zorn_liste, erwartung_liste, ekel_liste, furcht_liste, freude_liste, traurigkeit_liste, überraschung_liste, vertrauen_liste
 
 
 
