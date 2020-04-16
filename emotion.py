@@ -203,21 +203,27 @@ class Emotionen_nrc:
                     Vertrauen += 1
                     print(f"{cc} Vertrauen <--- ",i)
                     vertrauen_liste.append(i)
-        print("Zorn 		---		:", Zorn)
-        print("Erwartung 	---		:",Erwartung)
-        print("Ekel 		---		:",Ekel)
-        print("Furcht 		---		:",Furcht)
-        print("Freude 		---		:",Freude)
-        print("Traurigkeit 	---		:",Traurigkeit)
-        print("Überraschung ---		:",Überraschung)
-        print("Vertrauen 	---		:",Vertrauen)
+        print("Zorn 		<---		:", Zorn)
+        print("Erwartung 	<---		:",Erwartung)
+        print("Ekel 		<---		:",Ekel)
+        print("Furcht 		<---		:",Furcht)
+        print("Freude 		<---		:",Freude)
+        print("Traurigkeit 	<---		:",Traurigkeit)
+        print("Überraschung <---		:",Überraschung)
+        print("Vertrauen 	<---		:",Vertrauen)
         print("_________________")
         print("Words totally found: ",cc, " *")
         print("_________________")
         xf = Zorn + Erwartung + Ekel + Furcht + Freude + Traurigkeit + Überraschung + Vertrauen
-        print("EMOTIONEN  = ", xf, " *")
+	try:
+		emotions_found = xf
+		faktor = xf/cc
+	except:
+		emotions_found = xf
+		faktor = None
+	print("EMOTIONEN  = ", xf, " *")
         print("FAKTOR = ", xf/cc)
-        return zorn_liste, erwartung_liste, ekel_liste, furcht_liste, freude_liste, traurigkeit_liste, überraschung_liste, vertrauen_liste
+        return emotions_found, faktor, zorn_liste, erwartung_liste, ekel_liste, furcht_liste, freude_liste, traurigkeit_liste, überraschung_liste, vertrauen_liste
 
 
 
