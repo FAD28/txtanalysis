@@ -35,7 +35,6 @@ class Lemma:
 		return word_dict
 
 
-
 class Emotionen_rklinger:
 
 	def __init__(self):
@@ -215,7 +214,7 @@ class Emotionen_nrc:
         print("Words totally found: ",cc, " *")
         print("_________________")
         xf = Zorn + Erwartung + Ekel + Furcht + Freude + Traurigkeit + Überraschung + Vertrauen
-        EI = xf/ len(token_c)
+        EI = xf/ len(token_c) # token_c remove stop_words len()
         try:
             faktor = xf/cc
         except:
