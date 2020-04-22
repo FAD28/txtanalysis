@@ -139,8 +139,8 @@ class Emotionen_nrc:
         : return : emotionslisten : zorn_liste, erwartung_liste, ekel_liste, furcht_liste, freude_liste, traurigkeit_liste, überraschung_liste, vertrauen_liste
 
         """
-        nrc = pd.read_csv(os.path.join(BASEDIR +'/txtanalysis' +'/NRC_de.csv'),delimiter=';')  
-        
+        nrc1 = pd.read_csv(os.path.join(BASEDIR +'/txtanalysis' +'/NRC_de.csv'),delimiter=';')  
+        nrc = nrc1.apply(lambda x: x.astype(str))
         Zorn = 0
         Erwartung = 0
         Ekel = 0
