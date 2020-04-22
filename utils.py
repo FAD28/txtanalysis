@@ -45,7 +45,7 @@ class DataCleaner:
 			item22 = item21.replace("'","")
 			item23 = item22.replace("_","")
 			item24 = item23.replace(" "," ")
-			item25 = item24.strip('')
+			item25 = item24.strip()
 			item26 = re.sub('😆',' ',item25)
 			cleaned_list.append(' '.join(item26.split())) # <----- überflüssige whitespaces entfernen
 		return cleaned_list
