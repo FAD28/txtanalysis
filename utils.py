@@ -47,7 +47,10 @@ class DataCleaner:
 			item24 = item23.replace(" "," ")
 			item25 = item24.strip()
 			item26 = re.sub('😆',' ',item25)
-			cleaned_list.append(' '.join(item26.split())) # <----- überflüssige whitespaces entfernen
+			item27 = item26.replace("[","")
+			item28 = item27.replace("]","")
+			item29 = item28.replace("*","")
+			cleaned_list.append(' '.join(item28.split())) # <----- überflüssige whitespaces entfernen
 		return cleaned_list
 
 	def soft_clean(liste):
@@ -109,7 +112,8 @@ class DataCleaner:
 			i18 = i17.replace("[", "") 
 			i19 = i18.replace("]","") 
 			i20 = i19.replace("'","")
-			new_list.append(i20)
+			i21 = i20.replace("*","")
+			new_list.append(i21)
 		nn= "_".join(new_list)
 		return nn
 
