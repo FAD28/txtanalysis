@@ -3,6 +3,8 @@ import os
 import spacy
 from tqdm import tqdm 
 import pandas as pd 
+from txtanalysis.utils import DataWrangling as DW
+
 BASEDIR= os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -135,10 +137,11 @@ class Emotionen_nrc:
         7. Überraschung
         8. Vertrauen
 
-        : param : token_c : list with lower()
-        : return : emotionslisten : zorn_liste, erwartung_liste, ekel_liste, furcht_liste, freude_liste, traurigkeit_liste, überraschung_liste, vertrauen_liste
-
+        : param : token_c : token splitted list (token_c = [i.split() for i in data])
+        : return : EmotionIndex(EI), cc(Gefundene Wörter im NRC), CountOhneSTP(Wörter ohne Stopwörter), Faktor(Emotion/Words)
+		: return : emotionslisten : zorn_liste, erwartung_liste, ekel_liste, furcht_liste, freude_liste, traurigkeit_liste, überraschung_liste, vertrauen_liste
         """
+        print("--------------------------------------------------")
         nrc1 = pd.read_csv(os.path.join(BASEDIR +'/txtanalysis' +'/NRC_de.csv'),delimiter=';')  
         nrc = nrc1.apply(lambda x: x.astype(str))
         Zorn = 0
@@ -201,26 +204,43 @@ class Emotionen_nrc:
                     Vertrauen += 1
                     print(f"{cc} Vertrauen <--- ",i)
                     vertrauen_liste.append(i)
+        print("--------------------------------------------------")
         print("Zorn 		<---		:", Zorn)
         print("Erwartung 	<---		:",Erwartung)
         print("Ekel 		<---		:",Ekel)
         print("Furcht 		<---		:",Furcht)
         print("Freude 		<---		:",Freude)
         print("Traurigkeit 	<---		:",Traurigkeit)
-        print("Überraschung <---		:",Überraschung)
+        print("Überraschung    <---		:",Überraschung)
         print("Vertrauen 	<---		:",Vertrauen)
-        print("_________________")
-        print("Words totally found: ",cc, " *")
-        print("_________________")
-        xf = Zorn + Erwartung + Ekel + Furcht + Freude + Traurigkeit + Überraschung + Vertrauen
-        EI = xf/ len(token_c) # token_c remove stop_words len()
+        xf = Zorn + Erwartung + Ekel + Furcht + Freude + Traurigkeit + Überraschung + Vertrauen # Anzahl der gefundenen Emotionen 
+        stopwrd = DW.load_stopwords() 
+        no_stp = DW.remove_stopwords(token_c, stopwrd)
+        EI = xf/ len(no_stp) # EmotionsIndex
+        CountOhneSTP=  len(no_stp)
         try:
             faktor = xf/cc
         except:
-            faktor= 0 
-        print("EMOTIONEN  = ", xf, " *")
-        print("FAKTOR = ", xf/cc)
-        return EI, faktor, zorn_liste, erwartung_liste, ekel_liste, furcht_liste, freude_liste, traurigkeit_liste, überraschung_liste, vertrauen_liste
+            faktor= 0
+        stp_wörter = len(token_c) - CountOhneSTP
+        prozent_stp = stp_wörter * 100 / len(token_c)
+        print("___________________________________________________") 
+        print("TOTAL WORDS = ", len(token_c))
+        print("WORDS FOUND = ", cc)
+        print("EMOTIONEN FOUND = ", xf, " *")
+        print("FAKTOR = ", faktor)
+        print("EmotionIndex = ", EI)
+        print("WORDS OHNE STOP = ", len(no_stp))
+        print("Prozent an STOP = ", round(prozent_stp,2), "%")
+        print("")
+        print("Hinweis:")
+        print("EmotionIndex = Emotionen/Words ohne Stopwords")
+        print("Words = gefundene Wörter im NRC")
+        print("Emotionen = Gesamtanzahl an Emotionen")
+        print("Faktor = Emotionen/ Words")
+        print("")
+        print("___________________________________________________")
+        return EI, cc, CountOhneSTP, faktor, zorn_liste, erwartung_liste, ekel_liste, furcht_liste, freude_liste, traurigkeit_liste, überraschung_liste, vertrauen_liste
 
 
 
