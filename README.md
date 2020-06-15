@@ -1,5 +1,8 @@
-Die wichtigsten Utils für meine Textanalysen 
+#######################################
+Werzkeugkiste für Textanalysis
 
+Fabian Dittrich 2020
+#######################################
 
 Funktionen:
 
