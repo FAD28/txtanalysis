@@ -1,7 +1,7 @@
-#######################################
+#######################################  
 Werzkeugkiste für Textanalysis
 
-Fabian Dittrich 2020
+Fabian Dittrich 2020  
 #######################################
 
 Funktionen:
