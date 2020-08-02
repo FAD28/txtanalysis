@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## TXTANALYSIS
 _Die wichtigsten Utils für meine Textanalysen_
 
@@ -14,13 +13,6 @@ sudo git clone https://github.com/FAD28/txtanalysis
 	from txtanalysis.emotion import Emotionen_nrc as nrc
 	from txtanalysis.emotion import Emotionen_rklinger as rklinger
 ```
-=======
-#######################################  
-Werzkeugkiste für Textanalysis
-
-Fabian Dittrich 2020  
-#######################################
->>>>>>> b79c582ef71e8b3dc4f860a2537a756c1391a2a4
 
 Funktionen:
 ---
@@ -77,14 +69,3 @@ ___________________
 `rklinger.load_freude()`
 
 ...
-
-
-
-
-
-
-
-<<<<<<< HEAD
-=======
-DW.get_all_paths()
->>>>>>> b79c582ef71e8b3dc4f860a2537a756c1391a2a4
