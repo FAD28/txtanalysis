@@ -1,6 +1,6 @@
 ## TXTANALYSIS
 
-<img src="https://de.cleanpng.com/png-69s53d/" width="100" height="100">
+<img src="images/txtanalysis_github-logo.png" width="100" height="100">
 _Die wichtigsten Utils für meine Textanalysen_
 
 1. Git clone the File to your Python library (in my Case: /Users/Fabi/anaconda3/lib/python3.7)
