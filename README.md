@@ -1,4 +1,6 @@
 ## TXTANALYSIS
+
+<img src="https://de.cleanpng.com/png-69s53d/" width="100" height="100">
 _Die wichtigsten Utils für meine Textanalysen_
 
 1. Git clone the File to your Python library (in my Case: /Users/Fabi/anaconda3/lib/python3.7)
@@ -6,7 +8,7 @@ _Die wichtigsten Utils für meine Textanalysen_
 sudo git clone https://github.com/FAD28/txtanalysis 
 ```
 
-1. USAGE:
+2. USAGE:
 ```python
 	from txtanalysis import DataCleaner as DC
 	from txtanalysis import DataWrangling as DW
@@ -18,32 +20,33 @@ Funktionen:
 ---
 **DataCleaner**
 
-`DC.clean_list(liste)`
+-`DC.clean_list(liste)`
 
-`DC.soft_clean(liste)`
+-`DC.soft_clean(liste)`
 
-`DC.clean_filename(liste)`
+-`DC.clean_filename(liste)`
 
 ___________________
 **DataWrangling**
 
-`DW.load_stopwords(my_stopwords)`
+-`DW.load_stopwords(my_stopwords)`
 
-`DW.remove_stopwords(my_list, stopwords)`
+-`DW.remove_stopwords(my_list, stopwords)`
 
-`DW.get_all_paths()`
+-`DW.get_all_paths()`
 
-`DW.merge_data(data)`
+-`DW.merge_data(data)`
 
-`DW.split(data)`  --> 		Splittet die Daten und merged sie wieder zusammen in einer einzigen Methode
+-`DW.split(data)`	
+(Splittet die Daten und merged sie wieder zusammen in einer einzigen Methode)
 
 ___________________
 
 **Emotionen_nrc**
 
-`nrc.NRC_analysis(token_c)`
+-`nrc.NRC_analysis(token_c)`
 
-Return -->
+Return:
 
 |Anzahl |Wert|
 |--- |--- |
@@ -62,10 +65,10 @@ Return -->
 ___________________
 **Emotionen_rklinger**
 
-`rklinger.show()`
+-`rklinger.show()`
 
-`rklinger.load_ekel()`
+-`rklinger.load_ekel()`
 
-`rklinger.load_freude()`
+-`rklinger.load_freude()`
 
 ...
