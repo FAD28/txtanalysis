@@ -123,7 +123,7 @@ class NRC_analysis:
 					continue
 		return sentiment_words
 
-class Emotionen_nrc: 
+class NRC_analysis: 
 
     def NRC_analysis(token_c):
         """
