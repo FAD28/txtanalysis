@@ -125,7 +125,7 @@ class NRC_analysis:
 
 class NRC_analysis: 
 
-    def NRC_analysis(token_c, show=False):
+    def NRC_analysis(token_c, show=False, not_found= False):
         """
         *** EMOTION ANALYSIS WITH NRC_de.csv ***
         1. Zorn
@@ -161,6 +161,7 @@ class NRC_analysis:
         überraschung_liste = []
         vertrauen_liste = []
         cc = 0 
+        nF = []
         for i in token_c:
             if nrc['Wort'].isin([i]).any():
                 cc += 1
@@ -212,6 +213,10 @@ class NRC_analysis:
                     vertrauen_liste.append(i)
                     if show == True:
                         print(f"{cc} Vertrauen <--- ",i)
+            else:
+                nF.append(i)
+                if not_found == True:
+                    print(f"++ Not found: ++ {i}")
         print("--------------------------------------------------")
         print("Zorn 		<---		:", Zorn)
         print("Erwartung 	<---		:",Erwartung)
