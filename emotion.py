@@ -37,7 +37,7 @@ class Lemma:
 		return word_dict
 
 
-class Emotionen_rklinger:
+class NRC_analysis:
 
 	def __init__(self):
 		self.ekel_lexicon = []

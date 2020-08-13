@@ -13,7 +13,7 @@ sudo git clone https://github.com/FAD28/txtanalysis
 ```python
 	from txtanalysis import DataCleaner as DC
 	from txtanalysis import DataWrangling as DW
-	from txtanalysis.emotion import Emotionen_nrc as nrc
+	from txtanalysis.emotion import NRC_analysis as nrc
 	from txtanalysis.emotion import Emotionen_rklinger as rklinger
 ```
 
@@ -55,7 +55,7 @@ Return:
 |2 (cc) | Emotionen gesamt count|
 |3 (CountOhneSTP) | Wörter ohne Stoppwörter|
 |4 (faktor) | Faktor = Emotionsindex / Emotionen gesamt count| 
-|5 (zorn_liste) | FURCHT    NRC Emotion|
+|5 (zorn_liste) | ZORN    NRC Emotion|
 |6 (erwartung_liste) | ERWARTUNG    NRC Emotion|
 |7 (furcht_liste) | FURCHT    NRC Emotion|
 |8 (freude_liste) | FREUDE    NRC Emotion|
