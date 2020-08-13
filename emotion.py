@@ -125,7 +125,7 @@ class NRC_analysis:
 
 class NRC_analysis: 
 
-    def NRC_analysis(token_c):
+    def NRC_analysis(token_c, show=False):
         """
         *** EMOTION ANALYSIS WITH NRC_de.csv ***
         1. Zorn
@@ -167,43 +167,51 @@ class NRC_analysis:
                 # ZORN
                 if ((nrc['Wort'] == i) & (nrc['Zorn'] == '1')).any():
                     Zorn += 1
-                    print(f"{cc} Zorn <--- ", i)
                     zorn_liste.append(i)
+                    if show == True:
+                        print(f"{cc} Zorn <--- ", i)
                 # ERWARTUNG
                 if ((nrc['Wort'] == i) & (nrc['Erwartung'] == '1')).any():
                     Erwartung += 1
-                    print(f"{cc} Erwartung <--- ",i)
                     erwartung_liste.append(i)
+                    if show == True:
+                        print(f"{cc} Erwartung <--- ",i)
                 # EKEL
                 if ((nrc['Wort'] == i) & (nrc['Ekel'] == '1')).any():
                     Ekel += 1
-                    print(f"{cc} Ekel <--- ",i)
                     ekel_liste.append(i)
+                    if show == True:
+                        print(f"{cc} Ekel <--- ",i)
                 # FURCHT
                 if ((nrc['Wort'] == i) & (nrc['Furcht'] == '1')).any():
                     Furcht += 1
-                    print(f"{cc} Furcht <--- ",i)
                     furcht_liste.append(i)
+                    if show == True:
+                        print(f"{cc} Furcht <--- ",i)
                 # FREUDE
                 if ((nrc['Wort'] == i) & (nrc['Freude'] == '1')).any():
                     Freude += 1
-                    print(f"{cc} Freude <--- ",i)
                     freude_liste.append(i)
+                    if show == True:
+                        print(f"{cc} Freude <--- ",i)
                 # TRAURIGKEIT
                 if ((nrc['Wort'] == i) & (nrc['Traurigkeit'] == '1')).any():
                     Traurigkeit += 1
-                    print(f"{cc} Traurigkeit <--- ",i)
                     traurigkeit_liste.append(i)
+                    if show == True:
+                        print(f"{cc} Traurigkeit <--- ",i)
                 # ÜBERRASCHUNG
                 if ((nrc['Wort'] == i) & (nrc['Überraschung'] == '1')).any():
                     Überraschung += 1
-                    print(f"{cc} Überraschung <--- ",i)
                     überraschung_liste.append(i)
+                    if show == True:
+                        print(f"{cc} Überraschung <--- ",i)
                 # VERTRAUEN
                 if ((nrc['Wort'] == i) & (nrc['Vertrauen'] == '1')).any():
                     Vertrauen += 1
-                    print(f"{cc} Vertrauen <--- ",i)
                     vertrauen_liste.append(i)
+                    if show == True:
+                        print(f"{cc} Vertrauen <--- ",i)
         print("--------------------------------------------------")
         print("Zorn 		<---		:", Zorn)
         print("Erwartung 	<---		:",Erwartung)
