@@ -201,7 +201,7 @@ class DataWrangling:
 		       print("\tWord: {}, TF-IDF: {}".format(element, round(score, 4)))
 		return sliste_n
 
-	def get_all_paths(x):
+	def get_all_paths(x, typ=".csv"):
 		"""
 		Returns list of all paths
 		use -> get_all_paths(os.getcwd()) 
@@ -213,6 +213,6 @@ class DataWrangling:
 		#x = os.getcwd()
 		for r, d, f in os.walk(x):
 			for file in f:
-				if '.csv' in file:
+				if typ in file:
 					paths_liste.append(os.path.join(r,file))
 		return paths_liste
