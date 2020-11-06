@@ -123,9 +123,49 @@ class NRC_analysis:
 					continue
 		return sentiment_words
 
+
+class Utils:
+    def select_df(keyword, df):
+        """
+        GET NEW DATA FRAME BASED ON KEYWORD
+        
+        : keyword: keyword: str z.B: "Coronavirus"
+        : df : loaded dataframe
+        : return : result: Dataframe
+        
+        """
+        
+        #keyy = str(input("Welches Keyword? "))
+        keyy = keyword
+        cc = 0
+        cj = 0
+        index_keyword = []
+        for i in df['keywords']:
+            x2 = i.replace("[","") 
+            x1 = x2.replace("]","")
+            x = x1.replace("'","")
+            ss = x.strip().split(",")
+            for j in ss:
+                jj = j.strip()
+                if jj == keyy:
+                    index_keyword.append(cc)
+                    cj += 1
+
+            cc += 1
+        print(f"Anzahl an Artikel mit {keyword}" , len(index_corona))
+        
+        ndf = pd.DataFrame()
+        ndfl = []
+        for j in index_keyword:
+            f = df.iloc[j]
+            #print(f)
+            ndfl.append(f)
+        result = pd.DataFrame(ndfl).reset_index()
+        return result
+
 class NRC_analysis: 
 
-    def NRC_analysis(token_c, show=False, not_found= False):
+    def NRC_analysis(token_c, show=False, show_results=False , not_found=False):
         """
         *** EMOTION ANALYSIS WITH NRC_de.csv ***
         1. Zorn
@@ -169,63 +209,65 @@ class NRC_analysis:
                 if ((nrc['Wort'] == i) & (nrc['Zorn'] == '1')).any():
                     Zorn += 1
                     zorn_liste.append(i)
-                    if show == True:
+                    if show_results == True:
                         print(f"{cc} Zorn <--- ", i)
                 # ERWARTUNG
                 if ((nrc['Wort'] == i) & (nrc['Erwartung'] == '1')).any():
                     Erwartung += 1
                     erwartung_liste.append(i)
-                    if show == True:
+                    if show_results == True:
                         print(f"{cc} Erwartung <--- ",i)
                 # EKEL
                 if ((nrc['Wort'] == i) & (nrc['Ekel'] == '1')).any():
                     Ekel += 1
                     ekel_liste.append(i)
-                    if show == True:
+                    if show_results == True:
                         print(f"{cc} Ekel <--- ",i)
                 # FURCHT
                 if ((nrc['Wort'] == i) & (nrc['Furcht'] == '1')).any():
                     Furcht += 1
                     furcht_liste.append(i)
-                    if show == True:
+                    if show_results == True:
                         print(f"{cc} Furcht <--- ",i)
                 # FREUDE
                 if ((nrc['Wort'] == i) & (nrc['Freude'] == '1')).any():
                     Freude += 1
                     freude_liste.append(i)
-                    if show == True:
+                    if show_results == True:
                         print(f"{cc} Freude <--- ",i)
                 # TRAURIGKEIT
                 if ((nrc['Wort'] == i) & (nrc['Traurigkeit'] == '1')).any():
                     Traurigkeit += 1
                     traurigkeit_liste.append(i)
-                    if show == True:
+                    if show_results == True:
                         print(f"{cc} Traurigkeit <--- ",i)
                 # ÜBERRASCHUNG
                 if ((nrc['Wort'] == i) & (nrc['Überraschung'] == '1')).any():
                     Überraschung += 1
                     überraschung_liste.append(i)
-                    if show == True:
+                    if show_results == True:
                         print(f"{cc} Überraschung <--- ",i)
                 # VERTRAUEN
                 if ((nrc['Wort'] == i) & (nrc['Vertrauen'] == '1')).any():
                     Vertrauen += 1
                     vertrauen_liste.append(i)
-                    if show == True:
+                    if show_results == True:
                         print(f"{cc} Vertrauen <--- ",i)
             else:
                 nF.append(i)
                 if not_found == True:
                     print(f"++ Not found: ++ {i}")
-        print("--------------------------------------------------")
-        print("Zorn 		<---		:", Zorn)
-        print("Erwartung 	<---		:",Erwartung)
-        print("Ekel 		<---		:",Ekel)
-        print("Furcht 		<---		:",Furcht)
-        print("Freude 		<---		:",Freude)
-        print("Traurigkeit 	<---		:",Traurigkeit)
-        print("Überraschung    <---		:",Überraschung)
-        print("Vertrauen 	<---		:",Vertrauen)
+        if show == True:
+            print("--------------------------------------------------")
+            print("Freude       <---        :",Freude)
+            print("Vertrauen    <---        :",Vertrauen)
+            print("Angst       <---        :",Furcht)
+            print("Überraschung    <---     :",Überraschung)
+            print("Traurigkeit  <---        :",Traurigkeit)
+            print("Ekel         <---        :",Ekel)
+            print("Ärger 		<---		:", Zorn)
+            print("Erwartung 	<---		:",Erwartung)
+            
         xf = Zorn + Erwartung + Ekel + Furcht + Freude + Traurigkeit + Überraschung + Vertrauen # Anzahl der gefundenen Emotionen 
         stopwrd = DW.load_stopwords() 
         no_stp = DW.remove_stopwords(token_c, stopwrd)
@@ -237,23 +279,42 @@ class NRC_analysis:
             faktor= 0
         stp_wörter = len(token_c) - CountOhneSTP
         prozent_stp = stp_wörter * 100 / len(token_c)
-        print("___________________________________________________") 
-        print("TOTAL WORDS = ", len(token_c))
-        print("WORDS FOUND = ", cc)
-        print("EMOTIONEN FOUND = ", xf, " *")
-        print("FAKTOR = ", faktor)
-        print("EmotionIndex = ", EI)
-        print("WORDS OHNE STOP = ", len(no_stp))
-        print("Prozent an STOP = ", round(prozent_stp,2), "%")
-        print("")
-        print("Hinweis:")
-        print("EmotionIndex = Emotionen/Words ohne Stopwords")
-        print("Words = gefundene Wörter im NRC")
-        print("Emotionen = Gesamtanzahl an Emotionen")
-        print("Faktor = Emotionen/ Words")
-        print("")
-        print("___________________________________________________")
-        return EI, cc, CountOhneSTP, faktor, zorn_liste, erwartung_liste, ekel_liste, furcht_liste, freude_liste, traurigkeit_liste, überraschung_liste, vertrauen_liste
+        if show == True:
+            print("___________________________________________________") 
+            print("TOTAL WORDS = ", len(token_c))
+            print("WORDS FOUND = ", cc)
+            print("EMOTIONEN FOUND = ", xf, " *")
+            print("FAKTOR = ", faktor)
+            print("EmotionIndex = ", EI)
+            print("WORDS OHNE STOP = ", len(no_stp))
+            print("Prozent an STOP = ", round(prozent_stp,2), "%")
+            print("")
+            print("Hinweis:")
+            print("EmotionIndex = Emotionen/Words ohne Stopwords")
+            print("Words = gefundene Wörter im NRC")
+            print("Emotionen = Gesamtanzahl an Emotionen")
+            print("Faktor = Emotionen/ Words")
+            print("")
+            print("___________________________________________________")
+
+        emo_dict = {'Freude': freude_liste, 'Vertrauen': vertrauen_liste, 'Angst': furcht_liste, 'Überraschung': überraschung_liste, 'Traurigkeit': traurigkeit_liste, 'Ekel': ekel_liste, 'Ärger': zorn_liste, 'Erwartung': erwartung_liste }
+
+
+        return EI, cc, CountOhneSTP, faktor, emo_dict
+
+    def count_emo(a_dict, descending = True):
+        count = 0
+        new_dict = {}
+        for i in a_dict:
+            if isinstance(a_dict[i], list):
+                count += len(a_dict[i]) # Count all values
+                x = len(a_dict[i])
+            new_dict[i] = x
+        if descending == True:
+            print(".... descending ...")
+            new_dict = {k: v for k, v in sorted(new_dict.items(), key=lambda item: item[1], reverse=True)}
+        return new_dict
+
 
 
 

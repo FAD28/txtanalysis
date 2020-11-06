@@ -45,6 +45,9 @@ ___________________
 
 **Emotionen_nrc**
 
+-`Utils.select_df(keyword, df) `
+ (Select Rows based on keyword)
+
 -`nrc.NRC_analysis(token_c)`
 
 Return:
