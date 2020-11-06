@@ -50,6 +50,8 @@ ___________________
 
 -`nrc.NRC_analysis(token_c)`
 
+-`nrc.count_emo(a_dict, descending=True) `
+
 Return:
 
 |Anzahl |Wert|
