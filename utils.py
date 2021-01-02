@@ -50,7 +50,8 @@ class DataCleaner:
 			item27 = item26.replace("[","")
 			item28 = item27.replace("]","")
 			item29 = item28.replace("*","")
-			cleaned_list.append(' '.join(item28.split())) # <----- überflüssige whitespaces entfernen
+			item30 = item29.replace(r"\xa"," ")
+			cleaned_list.append(' '.join(item30.split())) # <----- überflüssige whitespaces entfernen
 		return cleaned_list
 
 	def soft_clean(liste):
@@ -89,7 +90,8 @@ class DataCleaner:
 		"""
 		new_list= []
 		for i in name:
-			ii = re.sub(r"[()\"#/@;:<>{~|?!,´`]","",i)
+			iss = i.strip()                # added: 02-01-2021
+			ii = re.sub(r"[()\"#/@;:<>{~|?!,´`]","",iss)
 			iii = re.sub(r"\n", " ", ii)
 			iiii = iii.replace(r"\n","")
 			i1 = iiii.replace(".","")
@@ -161,7 +163,7 @@ class DataWrangling:
 		Entfernt wie der Name schon sagt, die Stopwörter aus STP_de.txt (Version: PP 07-04-20)
 		(Funktioniert irgendwie nur mit split() items) 
 		'''
-		data = [x for x in my_list if x not in stopwords]
+		data = [x for x in my_list if x.lower() not in stopwords]
 		return data
 
 	def tfidf_calculate(clean_data):

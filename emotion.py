@@ -4,6 +4,7 @@ import spacy
 from tqdm import tqdm 
 import pandas as pd 
 from txtanalysis.utils import DataWrangling as DW
+import numpy as np 
 
 BASEDIR= os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -152,7 +153,7 @@ class Utils:
                     cj += 1
 
             cc += 1
-        print(f"Anzahl an Artikel mit {keyword}" , len(index_corona))
+        print(f"Anzahl an Artikel mit {keyword}" , len(index_keyword))
         
         ndf = pd.DataFrame()
         ndfl = []
@@ -179,7 +180,8 @@ class NRC_analysis:
 
         : param : token_c : token splitted list (token_c = [i.split() for i in data])
         : return : EmotionIndex(EI), cc(Gefundene Wörter im NRC), CountOhneSTP(Wörter ohne Stopwörter), Faktor(Emotion/Words)
-		: return : emotionslisten : zorn_liste, erwartung_liste, ekel_liste, furcht_liste, freude_liste, traurigkeit_liste, überraschung_liste, vertrauen_liste
+        ! FAKTOR IST EMOTIONEN DURCH WÖRTER INSGESAMT MIT STP UND EI OHNE STP!
+		: return : EI, cc, CountOhneSTP, faktor, emo_dict
         """
         print("--------------------------------------------------")
         nrc1 = pd.read_csv(os.path.join(BASEDIR +'/txtanalysis' +'/NRC_de.csv'),delimiter=';')  
@@ -271,7 +273,10 @@ class NRC_analysis:
         xf = Zorn + Erwartung + Ekel + Furcht + Freude + Traurigkeit + Überraschung + Vertrauen # Anzahl der gefundenen Emotionen 
         stopwrd = DW.load_stopwords() 
         no_stp = DW.remove_stopwords(token_c, stopwrd)
-        EI = xf/ len(no_stp) # EmotionsIndex
+        try:
+            EI = xf/ len(no_stp) # EmotionsIndex
+        except:
+            EI = np.nan
         CountOhneSTP=  len(no_stp)
         try:
             faktor = xf/cc
